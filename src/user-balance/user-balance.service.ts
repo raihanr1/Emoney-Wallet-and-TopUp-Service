@@ -2,10 +2,16 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DataSource, Repository } from 'typeorm';
 import { Balance } from '../entity/Balance';
+import {
+  StatusTransaction,
+  Transaction,
+  TransactionType,
+} from '../entity/Transaction';
 import { User } from '../entity/User';
 import { JwtService } from '../jwt/jwt.service';
 import { UserAuthentication } from '../user/user-authentication.dto';
 import { UserBalanceTopupDto } from './dto/user-balance-topup-dto';
+import { v4 as uuidv4 } from 'uuid';
 
 @Injectable()
 export class UserBalanceService {
@@ -62,8 +68,16 @@ export class UserBalanceService {
         getUserBalanceData.balance,
       );
 
-      //   create trx
+      await queryRunner.manager.insert(Transaction, {
+        transaction_id: uuidv4(),
+        transaction_type: TransactionType.Topup,
+        status: StatusTransaction.Success,
+        user: getUserBalanceData,
+        topup_amount: balance_money,
+      });
+
       await queryRunner.commitTransaction();
+
       return {
         statusCode: 201,
         message: `Success Top Up User Balance`,
@@ -74,6 +88,8 @@ export class UserBalanceService {
         },
       };
     } catch (error) {
+      console.log(error, '===');
+
       await queryRunner.rollbackTransaction();
       return error;
     } finally {
