@@ -12,6 +12,7 @@ import { User } from './entity/User';
 import { Balance } from './entity/Balance';
 import { Transaction } from './entity/Transaction';
 import { UserBalanceModule } from './user-balance/user-balance.module';
+import { UserTransactionModule } from './user-transaction/user-transaction.module';
 
 @Module({
   imports: [
@@ -33,6 +34,7 @@ import { UserBalanceModule } from './user-balance/user-balance.module';
     JwtModule,
     BcryptModule,
     UserBalanceModule,
+    UserTransactionModule,
   ],
   controllers: [AppController],
   providers: [AppService],
