@@ -13,7 +13,6 @@ export class ValidationPipe implements PipeTransform<any> {
     if (!metatype || !this.toValidate(metatype)) {
       return value;
     }
-    console.log(value, 'apasih');
 
     const object = plainToInstance(metatype, value);
     const errors = await validate(object);

@@ -14,7 +14,6 @@ export class AuthenticationUserGuard implements CanActivate {
     context: ExecutionContext,
   ): boolean | Promise<boolean> | Observable<boolean> {
     const authorization = context.getArgs()[0].headers.authorization;
-    console.log(authorization);
     if (!authorization) {
       throw new UnauthorizedException(
         'User Unauthorized',
@@ -26,7 +25,6 @@ export class AuthenticationUserGuard implements CanActivate {
       (err, decoded) => {
         if (!err) {
           const ResponseObj = context.switchToHttp().getResponse();
-          console.log(ResponseObj.req.headers);
           ResponseObj.req.headers['payload_token'] = decoded;
         }
       },
