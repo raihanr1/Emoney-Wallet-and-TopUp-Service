@@ -100,6 +100,7 @@ export class UserService {
     userAuthentication.username = getUser.username;
     return {
       statusCode: 200,
+      message: 'Success',
       data: {
         jwt: this.jwtService.generateAuthorizationLogin(userAuthentication),
       },
@@ -122,6 +123,7 @@ export class UserService {
     });
     return {
       statusCode: 200,
+      message: 'Success',
       data: {
         user: getUserInformation,
       },

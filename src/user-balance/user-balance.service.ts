@@ -20,7 +20,6 @@ export class UserBalanceService {
     private usersRepository: Repository<User>,
     @InjectRepository(Balance)
     private balancesRepository: Repository<Balance>,
-    private readonly jwtService: JwtService,
     private readonly dataSource: DataSource,
   ) {}
 
@@ -42,6 +41,7 @@ export class UserBalanceService {
     );
     return {
       statusCode: 200,
+      message: 'Success',
       data: {
         balance: getUserBalanceData.balance,
       },
@@ -88,8 +88,6 @@ export class UserBalanceService {
         },
       };
     } catch (error) {
-      console.log(error, '===');
-
       await queryRunner.rollbackTransaction();
       return error;
     } finally {

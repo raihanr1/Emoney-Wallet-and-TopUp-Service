@@ -23,13 +23,13 @@ export class UserController {
   async userRegister(
     @Body(new ValidationPipe()) userRegisterDto: UserRegisterDto,
   ) {
-    return this.userService.responseUserRegister(userRegisterDto);
+    return await this.userService.responseUserRegister(userRegisterDto);
   }
 
   @HttpCode(200)
   @Post('login')
   async userLogin(@Body(new ValidationPipe()) userLoginDto: UserLoginDto) {
-    return this.userService.responseUserLogin(userLoginDto);
+    return await this.userService.responseUserLogin(userLoginDto);
   }
 
   // only logged in user information
@@ -39,6 +39,6 @@ export class UserController {
   async userInformation(
     @Headers('payload_token') payload_token: UserAuthentication,
   ) {
-    return this.userService.responseGettingUserInformation(payload_token);
+    return await this.userService.responseGettingUserInformation(payload_token);
   }
 }

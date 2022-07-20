@@ -25,7 +25,7 @@ export class UserBalanceController {
   async getUserBalance(
     @Headers('payload_token') payload_token: UserAuthentication,
   ) {
-    return this.userBalanceService.gettingUserBalanceData(payload_token);
+    return await this.userBalanceService.gettingUserBalanceData(payload_token);
   }
 
   @HttpCode(201)
@@ -34,7 +34,7 @@ export class UserBalanceController {
     @Headers('payload_token') payload_token: UserAuthentication,
     @Body(new ValidationPipe()) userBalanceTopupDto: UserBalanceTopupDto,
   ) {
-    return this.userBalanceService.responseUserBalanceTopUp(
+    return await this.userBalanceService.responseUserBalanceTopUp(
       payload_token,
       userBalanceTopupDto,
     );
