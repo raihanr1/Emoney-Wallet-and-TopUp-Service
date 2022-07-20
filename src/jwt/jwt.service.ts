@@ -4,7 +4,6 @@ const jwt = require('jsonwebtoken');
 @Injectable()
 export class JwtService {
   generateAuthorizationLogin(payload: UserAuthentication) {
-    console.log(process.env.JWT_PRIVATE_KEY, 'duar');
     const token = jwt.sign(
       {
         email_address: payload.email_address,
