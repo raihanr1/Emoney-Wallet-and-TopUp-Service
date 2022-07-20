@@ -41,12 +41,3 @@ $ npm run start
 # watch mode
 $ npm run start:dev
 
-```
-
-```
-
-## Support
-
-Halo ka, aku udah lampirin postman file nya ke mba irna HR nanti bisa di import via postman dan untuk documentationnya bisa di klik di bagian kanan nama foldernya ada menu dan klik view documentation ya. Terimakasih
-
-```
