@@ -17,11 +17,24 @@ export enum StatusTransaction {
   Refund = 'Refund',
 }
 
+export enum TransactionType {
+  Topup = 'Top Up Balance',
+  BillerTransaction = 'Biller Transaction',
+  PaymentBillerTransaction = 'Payment Biller Transaction',
+}
+
 @Entity()
 export class Transaction {
   @PrimaryGeneratedColumn('uuid')
   @Generated('uuid')
   transaction_id: string;
+
+  @Column({
+    type: 'enum',
+    enum: TransactionType,
+    nullable: false,
+  })
+  transaction_type: TransactionType;
 
   @Column({
     type: 'enum',
@@ -31,8 +44,14 @@ export class Transaction {
   })
   status: StatusTransaction;
 
-  @Column({ type: 'tinyint' })
+  @Column({ type: 'tinyint', default: null, nullable: true })
   biller_id: number;
+
+  @Column({ type: 'float', default: null, nullable: true })
+  topup_amount: number;
+
+  @Column({ type: 'float', default: null, nullable: true })
+  payment_amount: number;
 
   @ManyToOne(() => User, (User) => User.id)
   @JoinColumn({ name: 'User_Id' })
