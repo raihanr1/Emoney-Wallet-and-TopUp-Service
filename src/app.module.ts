@@ -11,6 +11,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './entity/User';
 import { Balance } from './entity/Balance';
 import { Transaction } from './entity/Transaction';
+import { UserBalanceModule } from './user-balance/user-balance.module';
 
 @Module({
   imports: [
@@ -31,6 +32,7 @@ import { Transaction } from './entity/Transaction';
     HelperModule,
     JwtModule,
     BcryptModule,
+    UserBalanceModule,
   ],
   controllers: [AppController],
   providers: [AppService],
