@@ -50,10 +50,14 @@ export class Transaction {
   @Column({ type: 'float', default: null, nullable: true })
   topup_amount: number;
 
+  // inquiry
   @Column({ type: 'float', default: null, nullable: true })
   payment_amount: number;
 
-  @ManyToOne(() => User, (User) => User.id)
+  @ManyToOne(() => User, (User) => User.id, {
+    onUpdate: 'CASCADE',
+    onDelete: 'CASCADE',
+  })
   @JoinColumn({ name: 'User_Id' })
   user: User;
 
