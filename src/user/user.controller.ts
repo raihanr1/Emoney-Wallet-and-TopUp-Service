@@ -31,6 +31,7 @@ export class UserController {
   async userLogin(@Body(new ValidationPipe()) userLoginDto: UserLoginDto) {
     return this.userService.responseUserLogin(userLoginDto);
   }
+
   // only logged in user information
   @UseGuards(AuthenticationUserGuard)
   @HttpCode(200)

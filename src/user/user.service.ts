@@ -7,9 +7,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { BcryptService } from '../bcrypt/bcrypt.service';
 import { Balance } from '../entity/Balance';
-import { Transaction } from '../entity/Transaction';
 import { User } from '../entity/User';
-import { HelperService } from '../helper/helper.service';
 import { JwtService } from '../jwt/jwt.service';
 import { UserLoginDto } from './dto/user-login-dto';
 import { UserRegisterDto } from './dto/user-register.dto';
@@ -22,9 +20,6 @@ export class UserService {
     private usersRepository: Repository<User>,
     @InjectRepository(Balance)
     private balancesRepository: Repository<Balance>,
-    @InjectRepository(Transaction)
-    private transactionsRepository: Repository<Transaction>,
-    private readonly helperService: HelperService,
     private readonly jwtService: JwtService,
     private readonly bcryptService: BcryptService,
   ) {}
